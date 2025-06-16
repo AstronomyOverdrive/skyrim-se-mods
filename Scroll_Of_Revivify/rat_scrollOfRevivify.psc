@@ -4,6 +4,7 @@ ObjectReference Property sovngardeContainer  Auto ; rat_revivifyContainer 010012
 Armor Property Amulet  Auto ; ReligiousZenitharCommerce
 VisualEffect Property Visual  Auto ; DA10ReanimateTargetFX
 Sound Property Thunder  Auto ; MAGShockFFFireSD
+Faction Property NoCleanup  Auto ; WINoBodyCleanupFaction
 
 Event OnEffectStart(Actor akTarget, Actor akCaster)
     If (akTarget.IsDead())
@@ -21,5 +22,6 @@ Event OnEffectStart(Actor akTarget, Actor akCaster)
         akTarget.AddItem(Amulet, 1) ; Makes actor re-equip clothes
         akTarget.RemoveItem(Amulet, 1)
         Visual.Stop(akTarget) ; Stop visual effect
+        akTarget.AddToFaction(NoCleanup) ; Prevent target being moved to WIDeadBodyCleanupCell
     EndIf
 EndEvent
